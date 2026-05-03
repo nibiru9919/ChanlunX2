@@ -28,13 +28,16 @@ std::vector<float> Bi1(int nCount, std::vector<float> pHigh, std::vector<float> 
             }
         }
     }
-    if (kxianChuLi.kxianList.back().fangXiang == 1)
+    if (!kxianChuLi.kxianList.empty())
     {
-        pOut[kxianChuLi.kxianList.back().zhongJian] = 1;
-    }
-    else if (kxianChuLi.kxianList.back().fangXiang == -1)
-    {
-        pOut[kxianChuLi.kxianList.back().zhongJian] = -1;
+        if (kxianChuLi.kxianList.back().fangXiang == 1)
+        {
+            pOut[kxianChuLi.kxianList.back().zhongJian] = 1;
+        }
+        else if (kxianChuLi.kxianList.back().fangXiang == -1)
+        {
+            pOut[kxianChuLi.kxianList.back().zhongJian] = -1;
+        }
     }
     return pOut;
 }

@@ -1,4 +1,4 @@
-{CHANLUNX2主图 2026年5月3日update}
+﻿{CHANLUNX2主图 2026年5月3日update}
 {绑定2号DLL函数}
 说明:=1;
 DRAWTEXT_FIX(说明,0,0,0,'笔：黄色虚线；笔中枢：黄色线段'),COLORYELLOW;
