@@ -1,7 +1,6 @@
-# ChanlunX2
+# ChanlunX
 
 通达信缠论分析插件 — 基于通达信 DLL 扩展机制，在主图上绘制笔、线段、中枢。
-在https://github.com/kldcty/ChanlunX的代码上改进
 
 ## 前置条件
 
@@ -81,14 +80,20 @@ NOTEXT_DDUANSE1:STICKLINE(DUANSE1,DUANZD1,DUANZG1,0,0),COLORFF8000;{画段中枢
 
 ### 安装指南
 
-
+- [番茄缠论插件 FqChan04 TDX 安装指南](https://mp.weixin.qq.com/s/v3uchXfQLACdeEoV6CN65Q)
 
 ### 联系方式
 
-
+- WeChat: kldcty
+- QQ: 1106628276
+- 微信公众号: kldctymp
+- 缠论X星球: https://t.zsxq.com/0aDUuhQC5
+- 纷传圈子：http://s.a0.top/uHvyCEy/4KHZ
 
 ### 社区参与指南
 
+- [参与订阅](https://mp.weixin.qq.com/s/xKBIlmBp9iyYg7wpLc5bPw)
+- [充电助力](http://s.a0c.top/lJ1c8WZ/4KHZ)
 
 ## License
 

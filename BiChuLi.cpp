@@ -1,12 +1,13 @@
-﻿#include <iostream>
+#include <iostream>
 #include <fstream>
 #include <exception>
 #include "BiChuLi.h"
 #include "KxianChuLi.h"
 
-using namespace std;
+// C++23/C++26 兼容修改：移除 using namespace std;，改为显式使用 std:: 前缀
+// 原代码：using namespace std;
 
-bool ifChengbi(vector<Kxian> &tempKxianList, int direction)
+bool ifChengbi(std::vector<Kxian> &tempKxianList, int direction)
 {
     if (tempKxianList.size() < 4)
     {
@@ -82,10 +83,12 @@ bool ifChengbi(vector<Kxian> &tempKxianList, int direction)
     return false;
 }
 
-void BiChuLi::handle(vector<Kxian> &kxianList)
+void BiChuLi::handle(std::vector<Kxian> &kxianList)
 {
-    vector<Kxian> tempKxianList; // 临时未成笔K线的保存
-    for (vector<Kxian>::iterator iter = kxianList.begin(); iter != kxianList.end(); iter++)
+    std::vector<Kxian> tempKxianList; // 临时未成笔K线的保存
+    // C++23/C++26 兼容修改：使用 auto 替换显式迭代器类型
+    // 原代码：for (vector<Kxian>::iterator iter = kxianList.begin(); iter != kxianList.end(); iter++)
+    for (auto iter = kxianList.begin(); iter != kxianList.end(); ++iter)
     {
         if (this->biList.empty())
         {
@@ -109,9 +112,11 @@ void BiChuLi::handle(vector<Kxian> &kxianList)
                     // 向上笔继续延续
                     this->biList.back().jieShu = (*iter).jieShu;
                     this->biList.back().gao = (*iter).gao;
-                    if (tempKxianList.size() > 0)
+                    // 2026-05-10 22:50 - 代码风格优化：使用!empty()更符合C++标准
+                    // 原代码：if (tempKxianList.size() > 0)
+                    if (!tempKxianList.empty())
                     {
-                        for (vector<Kxian>::iterator it = tempKxianList.begin(); it != tempKxianList.end(); it++)
+                        for (auto it = tempKxianList.begin(); it != tempKxianList.end(); ++it)
                         {
                             this->biList.back().kxianList.push_back(*it);
                         }
@@ -131,7 +136,7 @@ void BiChuLi::handle(vector<Kxian> &kxianList)
                         bi.jieShu = tempKxianList.back().jieShu;
                         bi.di = tempKxianList.back().di;
                         bi.gao = this->biList.back().gao;
-                        for (vector<Kxian>::iterator it = tempKxianList.begin(); it != tempKxianList.end(); it++)
+                        for (auto it = tempKxianList.begin(); it != tempKxianList.end(); ++it)
                         {
                             bi.kxianList.push_back(*it);
                         }
@@ -148,9 +153,11 @@ void BiChuLi::handle(vector<Kxian> &kxianList)
                     // 向下笔继续延续
                     this->biList.back().jieShu = (*iter).jieShu;
                     this->biList.back().di = (*iter).di;
-                    if (tempKxianList.size() > 0)
+                    // 2026-05-10 22:50 - 代码风格优化：使用!empty()更符合C++标准
+                    // 原代码：if (tempKxianList.size() > 0)
+                    if (!tempKxianList.empty())
                     {
-                        for (vector<Kxian>::iterator it = tempKxianList.begin(); it != tempKxianList.end(); it++)
+                        for (auto it = tempKxianList.begin(); it != tempKxianList.end(); ++it)
                         {
                             this->biList.back().kxianList.push_back(*it);
                         }
@@ -170,7 +177,7 @@ void BiChuLi::handle(vector<Kxian> &kxianList)
                         bi.jieShu = tempKxianList.back().jieShu;
                         bi.gao = tempKxianList.back().gao;
                         bi.di = this->biList.back().di;
-                        for (vector<Kxian>::iterator it = tempKxianList.begin(); it != tempKxianList.end(); it++)
+                        for (auto it = tempKxianList.begin(); it != tempKxianList.end(); ++it)
                         {
                             bi.kxianList.push_back(*it);
                         }
@@ -193,7 +200,7 @@ void BiChuLi::handle(vector<Kxian> &kxianList)
                 bi.jieShu = tempKxianList.back().jieShu;
                 bi.di = tempKxianList.back().di;
                 bi.gao = this->biList.back().gao;
-                for (vector<Kxian>::iterator it = tempKxianList.begin(); it != tempKxianList.end(); it++)
+                for (auto it = tempKxianList.begin(); it != tempKxianList.end(); ++it)
                 {
                     bi.kxianList.push_back(*it);
                 }
@@ -211,7 +218,7 @@ void BiChuLi::handle(vector<Kxian> &kxianList)
                 bi.jieShu = tempKxianList.back().jieShu;
                 bi.gao = tempKxianList.back().gao;
                 bi.di = this->biList.back().di;
-                for (vector<Kxian>::iterator it = tempKxianList.begin(); it != tempKxianList.end(); it++)
+                for (auto it = tempKxianList.begin(); it != tempKxianList.end(); ++it)
                 {
                     bi.kxianList.push_back(*it);
                 }

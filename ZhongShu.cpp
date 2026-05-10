@@ -1,4 +1,4 @@
-﻿#include "ZhongShu.h"
+#include "ZhongShu.h"
 
 ZhongShu::ZhongShu()
 {
@@ -215,9 +215,16 @@ std::vector<Pivot> ZS(int nCount, std::vector<float> pIn, std::vector<float> pHi
                     pivot.zg = ZhongShuOne.fHigh;
                     pivot.zd = ZhongShuOne.fLow;
                     pivot.direction = (float)ZhongShuOne.nDirection;
-                    pivot.gg = *std::max_element(pHigh.begin() + pivot.s + 1, pHigh.begin() + pivot.e, [](float a, float b)
+                    // 2026-05-10 22:45 - 缠论原著第17课修正：中枢GG/DD计算区间
+                    // 原著规则：GG/DD应在完整中枢区间[s, e]内计算
+                    // 原代码：
+                    // pivot.gg = *std::max_element(pHigh.begin() + pivot.s + 1, pHigh.begin() + pivot.e, [](float a, float b)
+                    //                              { return a < b; });
+                    // pivot.dd = *std::min_element(pLow.begin() + pivot.s + 1, pLow.begin() + pivot.e, [](float a, float b)
+                    //                              { return a < b; });
+                    pivot.gg = *std::max_element(pHigh.begin() + pivot.s, pHigh.begin() + pivot.e + 1, [](float a, float b)
                                                  { return a < b; });
-                    pivot.dd = *std::min_element(pLow.begin() + pivot.s + 1, pLow.begin() + pivot.e, [](float a, float b)
+                    pivot.dd = *std::min_element(pLow.begin() + pivot.s, pLow.begin() + pivot.e + 1, [](float a, float b)
                                                  { return a < b; });
                     ZhongShuList.push_back(pivot);
                 }
@@ -286,9 +293,16 @@ std::vector<Pivot> ZS(int nCount, std::vector<float> pIn, std::vector<float> pHi
                     pivot.zg = ZhongShuOne.fHigh;
                     pivot.zd = ZhongShuOne.fLow;
                     pivot.direction = (float)ZhongShuOne.nDirection;
-                    pivot.gg = *std::max_element(pHigh.begin() + pivot.s + 1, pHigh.begin() + pivot.e, [](float a, float b)
+                    // 2026-05-10 22:45 - 缠论原著第17课修正：中枢GG/DD计算区间
+                    // 原著规则：GG/DD应在完整中枢区间[s, e]内计算
+                    // 原代码：
+                    // pivot.gg = *std::max_element(pHigh.begin() + pivot.s + 1, pHigh.begin() + pivot.e, [](float a, float b)
+                    //                              { return a < b; });
+                    // pivot.dd = *std::min_element(pLow.begin() + pivot.s + 1, pLow.begin() + pivot.e, [](float a, float b)
+                    //                              { return a < b; });
+                    pivot.gg = *std::max_element(pHigh.begin() + pivot.s, pHigh.begin() + pivot.e + 1, [](float a, float b)
                                                  { return a < b; });
-                    pivot.dd = *std::min_element(pLow.begin() + pivot.s + 1, pLow.begin() + pivot.e, [](float a, float b)
+                    pivot.dd = *std::min_element(pLow.begin() + pivot.s, pLow.begin() + pivot.e + 1, [](float a, float b)
                                                  { return a < b; });
                     ZhongShuList.push_back(pivot);
                 }
@@ -304,9 +318,16 @@ std::vector<Pivot> ZS(int nCount, std::vector<float> pIn, std::vector<float> pHi
         pivot.zg = ZhongShuOne.fHigh;
         pivot.zd = ZhongShuOne.fLow;
         pivot.direction = (float)ZhongShuOne.nDirection;
-        pivot.gg = *std::max_element(pHigh.begin() + pivot.s + 1, pHigh.begin() + pivot.e, [](float a, float b)
+        // 2026-05-10 22:45 - 缠论原著第17课修正：中枢GG/DD计算区间
+        // 原著规则：GG/DD应在完整中枢区间[s, e]内计算
+        // 原代码：
+        // pivot.gg = *std::max_element(pHigh.begin() + pivot.s + 1, pHigh.begin() + pivot.e, [](float a, float b)
+        //                              { return a < b; });
+        // pivot.dd = *std::min_element(pLow.begin() + pivot.s + 1, pLow.begin() + pivot.e, [](float a, float b)
+        //                              { return a < b; });
+        pivot.gg = *std::max_element(pHigh.begin() + pivot.s, pHigh.begin() + pivot.e + 1, [](float a, float b)
                                      { return a < b; });
-        pivot.dd = *std::min_element(pLow.begin() + pivot.s + 1, pLow.begin() + pivot.e, [](float a, float b)
+        pivot.dd = *std::min_element(pLow.begin() + pivot.s, pLow.begin() + pivot.e + 1, [](float a, float b)
                                      { return a < b; });
         ZhongShuList.push_back(pivot);
     }

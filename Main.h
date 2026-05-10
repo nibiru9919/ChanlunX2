@@ -8,6 +8,5 @@
 #include "Bi.h"
 #include "Duan.h"
 #include "ZhongShu.h"
-#include "IniReader.h"
 
 #endif

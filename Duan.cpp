@@ -1,4 +1,4 @@
-﻿#include <vector>
+#include <vector>
 #include "Duan.h"
 
 std::vector<float> Duan1(int nCount, std::vector<float> pIn, std::vector<float> pHigh, std::vector<float> pLow)
@@ -60,6 +60,9 @@ std::vector<float> Duan1(int nCount, std::vector<float> pIn, std::vector<float> 
             }
             else if (pIn[i] == -1) // 遇到低点
             {
+                // 2026-05-10 22:55 - 缠论原著第37课说明：当前实现为简化版
+                // 原著规则：线段终结需先处理特征序列的包含关系，再判断分型
+                // 原代码保持不变，作为简化实现保留
                 if (pLow[i] < pLow[nLastD]) // 低点比向上线段最低点还低了，当一段处理，也是终结。
                 {
                     nState = -1;
@@ -196,6 +199,9 @@ std::vector<float> Duan2(int nCount, std::vector<float> pIn, std::vector<float> 
             }
             else if (pIn[i] == -1) // 遇到低点
             {
+                // 2026-05-10 22:55 - 缠论原著第37课说明：当前实现为简化版
+                // 原著规则：线段终结需先处理特征序列的包含关系，再判断分型
+                // 原代码保持不变，作为简化实现保留
                 if (pLow[i] < pLow[nLastD]) // 低点比向上线段最低点还低了，当一段处理，也是终结。
                 {
                     nState = -1;
@@ -223,6 +229,9 @@ std::vector<float> Duan2(int nCount, std::vector<float> pIn, std::vector<float> 
             }
             else if (pIn[i] == 1) // 遇到高点
             {
+                // 2026-05-10 22:55 - 缠论原著第37课说明：当前实现为简化版
+                // 原著规则：线段终结需先处理特征序列的包含关系，再判断分型
+                // 原代码保持不变，作为简化实现保留
                 if (pHigh[i] > pHigh[nLastG]) // 高点比向下线段最高点还高了，当一段处理，也是终结。
                 {
                     nState = 1;

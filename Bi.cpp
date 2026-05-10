@@ -1,10 +1,11 @@
-﻿#include <iostream>
+#include <iostream>
 #include <fstream>
 #include "Bi.h"
 #include "KxianChuLi.h"
 #include "BiChuLi.h"
 
-using namespace std;
+// C++23/C++26 兼容修改：移除 using namespace std;，改为显式使用 std:: 前缀
+// 原代码：using namespace std;
 
 std::vector<float> Bi1(int nCount, std::vector<float> pHigh, std::vector<float> pLow)
 {
@@ -52,7 +53,9 @@ std::vector<float> Bi2(int nCount, std::vector<float> pHigh, std::vector<float> 
     }
     BiChuLi biChuLi;
     biChuLi.handle(kxianChuLi.kxianList);
-    for (vector<Bi>::iterator iter = biChuLi.biList.begin(); iter != biChuLi.biList.end(); iter++)
+    // C++23/C++26 兼容修改：使用 auto 替换显式迭代器类型
+    // 原代码：for (vector<Bi>::iterator iter = biChuLi.biList.begin(); iter != biChuLi.biList.end(); iter++)
+    for (auto iter = biChuLi.biList.begin(); iter != biChuLi.biList.end(); ++iter)
     {
         if ((*iter).fangXiang == 1)
         {

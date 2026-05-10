@@ -1,8 +1,10 @@
-﻿#include "Main.h"
+#include "Main.h"
+#include <cstring>  // C++23/C++26 兼容修改：添加 memset 所需的头文件
 #include <iostream>
 #include <fstream>
 
-using namespace std;
+// C++23/C++26 兼容修改：移除 using namespace std;，改为显式使用 std:: 前缀
+// 原代码：using namespace std;
 
 //定义DLL程序的入口函数
 BOOL APIENTRY DllMain(HANDLE hModule, DWORD ul_reason_for_call, LPVOID lpReserved)
@@ -174,7 +176,7 @@ void Func9(int nCount, float *pOut, float *pIn, float *pHigh, float *pLow)
         float c = 1;
         for (int j = i - 1; j >= 0; j--)
         {
-            if (ZhongShuList.at(j).direction = ZhongShuList.at(i).direction)
+            if (ZhongShuList.at(j).direction == ZhongShuList.at(i).direction)
             {
                 c++;
             }

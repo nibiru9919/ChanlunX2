@@ -1,9 +1,10 @@
-﻿#ifndef __KXIANCHULI_H__
+#ifndef __KXIANCHULI_H__
 #define __KXIANCHULI_H__
 
 #include <vector>
 
-using namespace std;
+// C++23/C++26 兼容修改：移除 using namespace std;，改为显式使用 std:: 前缀
+// 原代码：using namespace std;
 
 #pragma pack(push, 1)
 
@@ -28,8 +29,8 @@ struct Kxian
 class KxianChuLi
 {
 public:
-    vector<KxianRaw> kxianRawList; // 元素K线表
-    vector<Kxian> kxianList;       // 包含处理后的K线表
+    std::vector<KxianRaw> kxianRawList; // 元素K线表
+    std::vector<Kxian> kxianList;       // 包含处理后的K线表
     void add(float gao, float di); // 添加一根K线高和低进行处理
 };
 
